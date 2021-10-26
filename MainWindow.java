@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Scanner;
 
-public class MainWindow implements Runnable{
+public class MainWindow implements Runnable, ActionListener {
     public JFrame frame = null;
     public JLabel label = null;
     public JTextField name_field  = null;
@@ -26,7 +26,7 @@ public class MainWindow implements Runnable{
         frame.add(label_panel);
 
         text_panel = new JPanel();
-        text_panel.setLayout(new GridLayout(1,1));
+        text_panel.setLayout(new GridLayout(2,2));
         frame.add(text_panel);
 
         button_panel = new JPanel();
@@ -34,17 +34,27 @@ public class MainWindow implements Runnable{
         frame.add(button_panel);
 
         label = new JLabel("Input assignment types and weights (in decimal!) to get started!");
-        label.setPreferredSize(new Dimension(500,500));
+        label.setPreferredSize(new Dimension(200,200));
         label.setFont(Font.decode("ARIAL-ITALIC-48"));
         label_panel.add(label);
 
-        name_field = new JTextField("What type of Assignment is it?");
+        JLabel name_label = new JLabel("Assignment Type:");
+        text_panel.add(name_label);
+
+        JLabel weight_label = new JLabel("Weight (in decimal):");
+        text_panel.add(weight_label);
+
+        name_field = new JTextField();
+        name_field.setPreferredSize(new Dimension(400,100));
         text_panel.add(name_field);
 
-        weight_field = new JTextField("What is the weight of this assignment (in decimal form)?");
+        weight_field = new JTextField();
+        weight_field.setPreferredSize(new Dimension(400,100));
         text_panel.add(weight_field);
 
         submit_button = new JButton("Submit");
+        submit_button.setActionCommand("submit");
+        submit_button.addActionListener(this);
         button_panel.add(submit_button);
 
         proceed_button = new JButton("Proceed");
@@ -53,5 +63,13 @@ public class MainWindow implements Runnable{
         frame.setPreferredSize(new Dimension(1500,1500));
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e){
+        String command = e.getActionCommand();
+        if(command == "submit"){
+            System.out.println("Type: " + name_field.getText());
+            System.out.println("Weight: " + weight_field.getText());
+        }
     }
 }

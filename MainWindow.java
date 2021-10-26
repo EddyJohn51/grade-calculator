@@ -14,9 +14,9 @@ public class MainWindow implements Runnable{
         GridLayout layout = new GridLayout(3,2);
         frame.getContentPane().setLayout(layout);
 
-        label = new JLabel("Enter your grades below");
+        label = new JLabel("Input assignment types and weights (in decimal!) to get started!");
         label.setPreferredSize(new Dimension(500,500));
-        label.setFont(Font.decode("ARIAL-ITALIC-49"));
+        label.setFont(Font.decode("ARIAL-ITALIC-48"));
         frame.add(label);
 
         frame.setPreferredSize(new Dimension(1500,1500));
